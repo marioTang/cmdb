@@ -1,0 +1,172 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}资源管理{% endblock %}</title>
+
+
+
+{% block content %}
+{% include 'nav.html' %}
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+
+  <div>
+
+
+                            <div class="col-md-2">
+<select class="form-control" id="a2">
+
+            <option>请选择IP地址</option>
+        {% for select_data in book_list %}
+            <option value="{{ select_data.mac_interfaces}}">{{ select_data.mac_interfaces }}</option>
+        {% endfor %}
+    </select>
+
+
+  </div>
+
+                                <div class="col-md-1">
+  <button type="submit" class="btn btn-info" id="sum">搜索</button>
+                       </div>
+
+
+  <script>   $(document).ready(function(){
+      $("#sum").click(function(){
+        var a = $("#a2 option:eq(1)").val();
+
+        $.post("/fenye",{'aaaa':a }, function(ret){
+
+            {#var jsondict=$.parseJSON(ret)#}
+            if (jsondict['code'] == '404') {
+                        swal({
+                            title: ret['text'],
+                            {#type: 'error',#}
+                            {#showCancelButton: true,#}
+                            {#confirmButtonText: '退出',#}
+                            {#closeOnConfirm: false,#}
+                        })
+
+
+
+                    } else  { alert(re)}
+                })
+      });
+    });</script>
+
+<br><br>
+
+
+
+
+
+
+
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                          <th>操作系统</th>
+                                            <th>架构</th>
+                                            <th>内核版本</th>
+                                            <th>CPU版本</th>
+                                            <th>核心数</th>
+                                            <th>IP地址</th>
+                                            <th>主机名</th>
+                                            <th>minion名称</th>
+
+                                            <th>修改</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for sysdata in book_list %}
+
+                                        <tr>
+                                            <td>{{ sysdata.osfinger }}</td>
+                                            <td>{{ sysdata.osarch }}</td>
+                                            <td>{{ sysdata.kernelrelease }}</td>
+                                            <td>{{ sysdata.cpu_model }}</td>
+                                            <td>{{ sysdata.num_cpus }}</td>
+                                            <td>{{ sysdata.mac_interfaces }}</td>
+                                            <td>{{ sysdata.hostname }}</td>
+                                            <td>{{ sysdata.nameid }}</td>
+
+
+                                            <td>
+
+<a href="#" class="edit btn btn-info " data-toggle="modal" data-target="#myModal">编辑</a>
+
+
+
+
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <nav style="text-align: center">
+   <div id="callBackPager"></div>
+ <ul class="pagination " id="pager">
+
+            {% if book_list.has_previous %}
+                <li class="previous"><a href="/fenye?page={{ book_list.previous_page_number }}">上一页</a></li>
+            {% else %}
+                <li class="previous disabled"><a href="#">上一页</a></li>
+            {% endif %}
+
+
+            {% for num in pageRange %}
+
+                {% if num == currentPage %}
+                    <li class="item active"><a href="/fenye?page={{ num }}">{{ num }}</a></li>
+                {% else %}
+                    <li class="item"><a href="/fenye?page={{ num }}">{{ num }}</a></li>
+
+                {% endif %}
+            {% endfor %}
+
+
+
+            {% if book_list.has_next %}
+                <li class="next"><a href="/fenye?page={{ book_list.next_page_number }}">下一页</a></li>
+            {% else %}
+                <li class="next disabled"><a href="#">下一页</a></li>
+            {% endif %}
+ <!-- 分页居中放置-->
+
+
+        </ul>    </nav>
+
+
+                            </div>
+                            </div>
+                             </div>
+                </div>
+            </div>
+    </div>
+<ul>
+
+{% endblock %}
+</ul>
+
+

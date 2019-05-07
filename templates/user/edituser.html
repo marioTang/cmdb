@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}主页{% endblock %}</title>
+
+
+
+{% block content %}
+{% include 'nav.html' %}
+               <div class="col-lg-9">
+                        <div class="card">
+                            <div class="card-body card-block">
+                                <form  method="post" enctype="/edituser/" class="form-horizontal">
+
+
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">用户ID</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" readonly="readonly" id="password-input" name="id" value={{ userall.id }}  ></div>
+                                         {% csrf_token %}
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">用户名</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="password-input" name="name" value={{ userall.username }}></div>
+                                         {% csrf_token %}
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">密码</label></div>
+                                        <div class="col-12 col-md-9"><input type="password" id="password-input" name="password" value={{ userall.password }} ></div>
+                                      </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">邮箱地址</label></div>
+                                        <div class="col-12 col-md-9"><input type="email" id="password-input" name="email" value={{ userall.email }} ></div>
+                                         {% csrf_token %}
+                                    </div>
+
+                                     <div class="row form-group">
+                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">电话</label></div>
+                                        <div class="col-12 col-md-9"><input type="tel" id="password-input" name="telphone" value={{ userall.telephone }} ></div>
+                                     </div>
+
+
+                                      <div class="card-footer">
+                                          <button type="submit" class="btn btn-info">
+                                         <a class="btn btn-info">提交修改</a>
+                                       </button>
+
+
+                                         <a class="btn btn-info" href="/users">返回</a>
+
+
+
+                     {% if message %}
+                         <br>
+                         <br>
+                    <div class="alert alert-warning " >{{ message }}</div>
+                {% endif %}
+                            </div>
+                                </form>
+                        </div>
+                    </div>
+               </div>
+ {% endblock %}
+
+

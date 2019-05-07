@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}资源管理{% endblock %}</title>
+
+
+
+{% block content %}
+{% include 'nav.html' %}
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+
+  {{ myechart|safe }}
+
+
+
+
+<script>
+           jQuery(document).ready(function () {
+           jQuery('a.edit').on('click', function () {
+
+            jQuery('input#osfinger').val(jQuery(this).data('osfinger'))
+            jQuery('input#osarch').val(jQuery(this).data('osarch'))
+            jQuery('input#kernelrelease').val(jQuery(this).data('kernelrelease'))
+            jQuery('input#cpu_model').val(jQuery(this).data('cpu_model'))
+               jQuery('input#num_cpus').val(jQuery(this).data('num_cpus'))
+               jQuery('input#mac_interfaces').val(jQuery(this).data('mac_interfaces'))
+               jQuery('input#hostname').val(jQuery(this).data('hostname'))
+
+
+     $('#dialog-edit').modal(show)
+               {#alert("DFDFDF")#}
+            return false;
+        })})
+    jQuery('button.btn-save').on('click', function () {
+                let data = jQuery('form#form-edit').serializeArray()
+                jQuery.post("/clientseting", data, function (response)
+                { if (response['code'] == '200') {
+                        swal({
+                            title: '更新成功',
+                            type: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: '确定',
+                            closeOnConfirm: false,
+                        })
+
+
+
+                    } else if (response['code'] == '400') { alert('更新失败')}
+                }, 'json')
+            })
+
+</script>
+                            </div>
+                            </div>
+                             </div>
+                </div>
+            </div>
+    </div>
+ {% endblock %}
+
+

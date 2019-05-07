@@ -1,0 +1,168 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}资源管理{% endblock %}</title>
+
+
+
+{% block content %}
+{% include 'nav.html' %}
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+
+
+<div class="table-stats order-table ov-h">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>操作系统</th>
+                                            <th>架构</th>
+                                            <th>内核版本</th>
+                                            <th>CPU版本</th>
+                                            <th>核心数</th>
+                                            <th>IP地址</th>
+                                            <th>主机名</th>
+                                            <th>修改</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for sysdata in data %}
+
+                                        <tr>
+                                            <td>{{ sysdata.osfinger }}</td>
+                                            <td>{{ sysdata.osarch }}</td>
+                                            <td>{{ sysdata.kernelrelease }}</td>
+                                            <td>{{ sysdata.cpu_model }}</td>
+                                            <td>{{ sysdata.num_cpus }}</td>
+                                            <td>{{ sysdata.mac_interfaces }}</td>
+                                            <td>{{ sysdata.hostname }}</td>
+
+                                            <td>
+
+<a href="javascript:void(0)" data-osfinger="{{ sysdata.osfinger }}"         data-osarch="{{ sysdata.osarch }}"
+                             data-kernelrelease="{{ sysdata.kernelrelease }}"  data-cpu_model="{{ sysdata.cpu_model }}"
+                             data-num_cpus="{{ sysdata.num_cpus }}"            data-mac_interfaces="{{ sysdata.mac_interfaces }}"
+                             data-hostname="{{ sysdata.hostname }}"
+   class="edit badge badge-complete " data-toggle="modal" data-target="#myModal">编辑</a>
+
+
+
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					编辑主机信息
+				</h4>
+			</div>
+			<div class="modal-body">
+				      <form class="form-horizontal" id="form-edit">
+                        <input type="hidden" id="id" name="id" value="">
+                        <div class="form-group">
+                            <label for="addr" class="col-sm-2 control-label">操作系统</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="osfinger" name="osfinger" placeholder="addr">
+                            </div>
+                        </div>
+                              <div class="form-group">
+                            <label for="user" class="col-sm-2 control-label">架构</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="osarch" name="osarch" placeholder="user">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="application" class="col-sm-2 control-label">内核版本</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="kernelrelease" name="kernelrelease"
+                                       placeholder="application">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="remark" class="col-sm-2 control-label">CPU版本</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="cpu_model" name="cpu_model">
+                            </div>
+                        </div>
+
+                           <div class="form-group">
+                            <label for="remark" class="col-sm-2 control-label">CPU核数</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="num_cpus" name="num_cpus" >
+                            </div>
+                        </div>
+                              <div class="form-group">
+                            <label for="remark" class="col-sm-2 control-label">IP地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="mac_interfaces" name="mac_interfaces" >
+                            </div>
+                        </div>
+                              <div class="form-group">
+                            <label for="remark" class="col-sm-2 control-label">主机名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="hostname" name="hostname" >
+                            </div>
+                        </div>
+
+                    </form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary">
+					提交更改
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+
+
+<script>
+            jQuery(document).ready(function () {
+           jQuery('a.edit').on('click', function () {
+
+            jQuery('input#osfinger').val(jQuery(this).data('osfinger'))
+            jQuery('input#osarch').val(jQuery(this).data('osarch'))
+            jQuery('input#kernelrelease').val(jQuery(this).data('kernelrelease'))
+            jQuery('input#cpu_model').val(jQuery(this).data('cpu_model'))
+               jQuery('input#num_cpus').val(jQuery(this).data('num_cpus'))
+               jQuery('input#mac_interfaces').val(jQuery(this).data('mac_interfaces'))
+               jQuery('input#hostname').val(jQuery(this).data('hostname'))
+
+
+     $('#dialog-edit').modal(show)
+               {#alert("DFDFDF")#}
+            return false;
+        })})
+
+</script>
+                            </div>
+                            </div>
+                             </div>
+                </div>
+            </div>
+    </div>
+ {% endblock %}
+
+

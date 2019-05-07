@@ -1,0 +1,98 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}监控数据{% endblock %}</title>
+
+
+
+{% block content %}
+{% include 'nav.html' %}
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+
+
+
+<div class="modal-body" id="chart" style="width: 600px;height:400px;">
+
+
+             <script type="text/javascript">
+
+      jQuery.get("/test", function (response) {
+
+                    console.log(response['result'])
+                    if (response['code'] != 200) {
+                        alert("dfdfdf")
+                    }
+
+                    let data_xAxis = []
+                    let data_cpu = []
+                    let data_mem = []
+
+                    jQuery.each(response['result'], function (idx, value) {
+                        data_xAxis.unshift(value['time'])
+                        data_cpu.unshift(value['cpu'])
+                        data_mem.unshift(value['mem'])
+                    })
+
+ var   option = {
+                        title: {
+                            text: '折线图堆叠'
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data: ['CPU使用率', '内存使用率']
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        toolbox: {
+                            feature: {
+                                saveAsImage: {}
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: data_xAxis
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                name: 'cpu使用率',
+                                type: 'line',
+                                stack: 'cpu使用率',
+                                data: data_cpu
+                            },
+                            {
+                                name: '内存使用率',
+                                type: 'line',
+                                stack: '内存使用率',
+                                data: data_mem
+                            }
+
+                        ]
+                    };
+ myChart.setOption(option);})
+ </script>
+
+
+                            </div>
+                            </div>
+                             </div>
+                </div>
+            </div>
+    </div>
+ {% endblock %}
+
+

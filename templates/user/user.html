@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}用户管理{% endblock %}</title>
+
+
+
+{% block content %}
+{% include 'nav.html' %}
+
+ <div class="content">
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+
+
+
+
+
+
+<div>
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>用户名</th>
+                                            <th>密码</th>
+                                            <th>邮箱</th>
+                                            <th>手机号</th>
+                                            <th>操作</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for user in userall %}
+
+                                        <tr>
+                                            <td>{{ user.id }}</td>
+                                            <td>{{ user.username }}</td>
+                                            <td>{{ user.password }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>{{ user.telephone }}</td>
+                                            <td>
+                                                <a class="btn btn-info" href="/edituser/?id={{ user.id }}">修改</a>
+                                                <a class="btn btn-warning" href="/deluser/?id={{ user.id }}">删除</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                            </div>
+                             </div>
+                </div>
+            </div>
+    </div>
+ {% endblock %}
+
+

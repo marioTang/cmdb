@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}主页{% endblock %}</title>
+
+
+
+{% block content %}
+    {% load static %}
+
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+
+                <div class="login-form">
+                    <form  action="/login/" method="post" >
+
+
+                        <div class="form-group">
+                            <label>用户名</label>
+                            {% csrf_token %}
+                            <input type="text" class="form-control" name="user">
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" class="form-control" name="passwd">
+
+                        </div>
+                       <div class="form-group">
+                            <label>登录</label>
+                            <input type="submit" class="form-control " value="登录">
+                       </div><br>
+                 {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+ <div class="register-link m-t-15 text-center">
+                            <p>没有账号 ? <a href="/register">点击注册</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ {% endblock %}
+
+

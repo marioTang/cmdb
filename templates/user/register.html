@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+<title>{% block title %}主页{% endblock %}</title>
+
+
+
+{% block content %}
+    {% load static %}
+
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+
+            <div class="login-content">
+                <div class="register-link m-t-15 text-center">
+                            <H2>请填写你的注册信息</H2>
+                        </div>
+                <div class="login-form">
+                    <form>
+
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type=text class="form-control" >
+                        </div>
+
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" class="form-control" >
+                        </div>
+
+                        <div class="form-group">
+                            <label>手机号</label>
+                            <input type="tel" class="form-control" >
+                        </div>
+
+                        <div class="form-group">
+                            <label>邮箱地址</label>
+                            <input type="email" class="form-control" >
+                        </div>
+
+                        <div class="social-login-content">
+                            <div class="social-button">
+                                <button type="submit" class="btn social twitter btn-flat btn-addon mt-2">注册</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+ {% endblock %}
+
+

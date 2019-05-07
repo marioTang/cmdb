@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+   <meta charset="UTF-8">
+    <title>{% block title %}神龙系统{% endblock %}</title>
+{#    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>#}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/datatable/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/datatable/jquery.js' %}"></script>
+    <script src="{% static 'js/datatable/bootsnav.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/lib/chart-js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'assets/js/lib/chartist/chartist.min.js' %}"></script>
+    <script src="{% static 'assets/js/lib/chartist/chartist-plugin-legend.js' %}"></script>
+    <script src="{% static 'assets/js/lib/flot-chart/jquery.flot.js' %}"></script>
+    <script src="{% static 'assets/js/lib/flot-chart/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'assets/weather/js/jquery.simpleWeather.min.js' %}"></script>
+    <script src="{% static 'assets/weather/js/weather-init.js' %}"></script>
+    <script src="{% static 'assets/js/init/fullcalendar-init.js' %}"></script>
+    <script src="{% static 'js/echarts/echarts.common.min.js' %}"></script>
+    <script src="{% static 'js/echarts/echarts.min.js' %}"></script>
+
+
+	{% for jsfile_name in script_list %}
+<script src="{{ host }}/{{ jsfile_name }}.js"></script> # 加载js文件
+{% endfor %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/datatable/dataTables.bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/normalize.css' %}">
+{#    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/themify-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/pe-icon-7-filled.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/weather/css/weather-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/calendar/fullcalendar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/charts/chartist.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/lib/vector-map/jqvmap.min.css' %}">
+
+
+
+
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>
+
